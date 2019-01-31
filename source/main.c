@@ -24,8 +24,7 @@
 #pragma GCC diagnostic ignored "-Wmissing-declarations"
 #pragma GCC diagnostic ignored "-Wreturn-type"
 
-int
-main (int argc, char* argv[])
+int main (int argc, char* argv[])
 {
 	printf("Hello World");
 	return 0;

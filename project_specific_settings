@@ -1,0 +1,26 @@
+.INCLUDEDIRS : $(PROJECT_DIR)
+.INCLUDE : LintPath
+
+CC = ..\CX\BIN\arm-none-eabi-gcc.exe
+AS = ..\CX\BIN\arm-none-eabi-gcc.exe
+LINK = ..\CX\BIN\arm-none-eabi-gcc.exe
+
+# Set macros for build program options (compiler and assembler)
+
+
+
+
+CFLAGS = #$(INCLUDE_PATH) -Wa,-adhln -g -o $(<:b).obj -o a > $(<:b).lst
+#-Wall -std=c99 -ffreestanding
+
+
+
+ 
+AFLAGS = $(INCLUDE_PATH)
+
+# Add compilers, linkers, etc. to the path that recipes are run with
+
+PATH := C:\lint;$(PATH)
+
+
+PROJ_NAME = GNUTest

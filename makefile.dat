@@ -1,0 +1,79 @@
+#/**
+# *  @file		makefile.dat       
+# *
+# *  @brief      This file contains the makefile configurations related to STM32F0x micro for IAP framework
+# *
+# *  @details    Although it is safe to customize this file. It is meant to be generic for any project 
+# *              so any project specific settings should go in the file of the same name.
+# *
+# *  @copyright  Copyright 2014-$Date: 2016/03/16 14:15:12EDT $. Whirlpool Corporation. All rights reserved - CONFIDENTIAL
+# */
+#//---------------------------------------------------------------------------------------------------------------------
+
+
+
+#/*=======================================================================================================*/
+#/* Definition - Do not Modify
+#/*-------------------------------------------------------------------------------------------------------*/
+
+.IF $(VERBOSE)
+#.SILENT
+.ELSE
+.SILENT=1
+.END
+
+.INCLUDE : project_specific_settings
+
+ECHO := tools\echo.exe
+
+# Define source paths for required file types that aren't in current directory
+
+.SOURCE.hex : exe
+.SOURCE.obj : obj
+.SOURCE.lst : listings
+
+# Include file that contains the macro assignment for the list of object files
+# The macro set in this file is "OBJECTS"
+
+.IGNORE .INCLUDE : object_file_list
+
+#/*------------ End of Definition ----------------------------------------------------------------------------*/
+
+
+#/*=======================================================================================================*/
+#/* Linking - Select either one of the option below based on the application type
+#/*-------------------------------------------------------------------------------------------------------*/
+
+$(PROJ_NAME).HEX : $(OBJECTS)
+	@@ $(ECHO) \nLinking...
+
+#Class B Application  	
+	$(LINK) $(OBJECTS) -o exe\$(PROJ_NAME).elf  -T source\config.ld
+	
+#Class A Application 	
+#	$(LINK) -f source\lnkrx_flash.xcl --config source\config.icf --image_input exe\settingfile.bin,__SetingFile_Start,.settingfile*,4 --keep __SetingFile_Start --entry __iar_program_start --config_def _USTACK_SIZE=0x200 --config_def _ISTACK_SIZE=0x200 --config_def _HEAP_SIZE=0x400 -o exe\$(PROJ_NAME).out.tmp --map exe\$(PROJ_NAME).map  --place_holder _MICRO_FLASH_CRC,2,.checksum,4 --keep _MICRO_FLASH_CRC 
+#	@@ $(ECHO) \nCalculating CRC.
+
+
+	@@ $(ECHO) \nCompile successful.
+		
+	@@ $(ECHO) \nCompile successful.
+
+#/*------------ End of Linking -----------------------------------------------------------------------------*/
+
+
+
+
+
+
+
+#/*=======================================================================================================*/
+#/* LINT - Do not modify
+#/*-------------------------------------------------------------------------------------------------------*/
+
+# rule for "linting" all of the .lob files
+
+LINTALL : $(LOBS)
+	@ $(ECHO) \nLinting...
+
+#/*------------ End of LINT ------------------------------------------------------------------------------*/

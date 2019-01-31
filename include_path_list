@@ -1,0 +1,4 @@
+INCLUDE_PATH =\
+-I./ \
+-I..\cx \
+-I..\cx\arm-non-eabi\include  \
